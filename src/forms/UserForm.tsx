@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  Box, Button, Checkbox, FormControlLabel, Grid, MenuItem, Typography
+  Box, Checkbox, FormControlLabel, Grid, MenuItem, Typography
 } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
 import { userSchema, UserFormValues } from '../schemas/user.schema';
@@ -22,7 +22,7 @@ export const UserForm = ({ onSubmit }: { onSubmit: (data: UserFormValues) => voi
 
   return (
     <FormProvider {...form}>
-      <Box component="form" onSubmit={form.handleSubmit(onSubmit)} noValidate>
+      <Box component="form" id="user-form" onSubmit={form.handleSubmit(onSubmit)} noValidate>
         <Typography variant="h6" gutterBottom>
           Додати користувача
         </Typography>
@@ -58,11 +58,6 @@ export const UserForm = ({ onSubmit }: { onSubmit: (data: UserFormValues) => voi
               control={<Checkbox {...form.register('isActive')} defaultChecked />}
               label="Активний"
             />
-          </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
-            <Button type="submit" variant="contained" color="primary">
-              Зберегти
-            </Button>
           </Grid>
         </Grid>
       </Box>
