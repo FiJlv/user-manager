@@ -15,3 +15,8 @@ export const createUser = async (data: UserFormValues): Promise<User> => {
   const response = await api.post('/users', data);
   return response.data;
 };
+
+export const updateUser = async (user: User): Promise<User> => {
+  const response = await api.put(`/users/${user.id}`, user);
+  return response.data;
+};

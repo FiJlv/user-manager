@@ -1,44 +1,24 @@
 {
   "users": [
     {
-      "id": "0aa7",
-      "fullName": "sdfsdf",
-      "email": "sdfsdf@i.ua",
-      "phone": "+380988248424",
-      "birthDate": "",
-      "role": "Користувач",
-      "position": "fgdfg",
-      "isActive": true
-    },
-    {
-      "id": "8e2f",
-      "fullName": "ываываыв",
-      "email": "sadads@i.ua",
-      "phone": "4223423423423",
-      "birthDate": "",
-      "role": "Адміністратор",
-      "position": "ываыва",
-      "isActive": true
-    },
-    {
-      "id": "9bf5",
-      "fullName": "dfgdfgdfgfd",
-      "email": "jhsdfjfj@i.ua",
-      "phone": "+38098238283823",
-      "birthDate": "2002-02-23",
+      "id": "c342",
+      "fullName": "sdfsdf sdfыыыы",
+      "email": "sdfsdf@iisdf.sdf",
+      "phone": "sdfsdfsdfsdf",
+      "birthDate": "0222-02-22",
       "role": "Користувач",
       "position": "",
       "isActive": true
     },
     {
-      "id": "9049",
-      "fullName": "35gtgrgdfgdfgf",
-      "email": "dfgrtg54gg4@i.gf",
-      "phone": "dfgdfg435345",
-      "birthDate": "",
+      "id": "f5e9",
+      "fullName": "Алексій Левович",
+      "email": "sdflljsdffsd@sdf.sdf",
+      "phone": "23423949230",
+      "birthDate": "2002-02-22",
       "role": "Користувач",
-      "position": "fdfgdfg",
-      "isActive": false
+      "position": "dfddввв",
+      "isActive": true
     }
   ]
 }

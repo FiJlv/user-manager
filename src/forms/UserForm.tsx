@@ -6,7 +6,13 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { userSchema, UserFormValues } from '../schemas/user.schema';
 import { FormField } from '../components/FormField';
 
-export const UserForm = ({ onSubmit }: { onSubmit: (data: UserFormValues) => void }) => {
+export const UserForm = ({
+  onSubmit,
+  initialValues
+}: {
+  onSubmit: (data: UserFormValues) => void;
+  initialValues?: Partial<UserFormValues>;
+}) => {
   const form = useForm<UserFormValues>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -17,6 +23,7 @@ export const UserForm = ({ onSubmit }: { onSubmit: (data: UserFormValues) => voi
       role: 'Користувач',
       position: '',
       isActive: true,
+      ...initialValues,
     },
   });
 

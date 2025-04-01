@@ -1,4 +1,5 @@
 import { useUsers } from '../hooks/useUsers';
+import { User } from '../types/user.types';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
   Paper, CircularProgress, Button, Box
@@ -9,6 +10,17 @@ import { UserDialog } from './UserDialog';
 export const UserTable = () => {
   const { data: users, isLoading, isError } = useUsers();
   const [open, setOpen] = useState(false);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+
+  const handleEdit = (user: User) => {
+    setEditingUser(user);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setEditingUser(null);
+  };
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <div>Помилка при завантаженні користувачів</div>;
@@ -21,7 +33,7 @@ export const UserTable = () => {
         </Button>
       </Box>
 
-      <UserDialog open={open} onClose={() => setOpen(false)} />
+      <UserDialog open={open} onClose={handleClose} user={editingUser} />
 
       <TableContainer component={Paper}>
         <Table>
@@ -34,6 +46,7 @@ export const UserTable = () => {
               <TableCell>Роль</TableCell>
               <TableCell>Посада</TableCell>
               <TableCell>Активний</TableCell>
+              <TableCell>Дії</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -46,6 +59,11 @@ export const UserTable = () => {
                 <TableCell>{user.role}</TableCell>
                 <TableCell>{user.position}</TableCell>
                 <TableCell>{user.isActive ? 'Так' : 'Ні'}</TableCell>
+                <TableCell>
+                  <Button size="small" onClick={() => handleEdit(user)}>
+                    Редагувати
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
