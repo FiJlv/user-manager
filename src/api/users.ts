@@ -20,3 +20,7 @@ export const updateUser = async (user: User): Promise<User> => {
   const response = await api.put(`/users/${user.id}`, user);
   return response.data;
 };
+
+export const deleteUser = async (id: number): Promise<void> => {
+  await api.delete(`/users/${id}`);
+};

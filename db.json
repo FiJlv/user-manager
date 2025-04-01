@@ -1,23 +1,13 @@
 {
   "users": [
     {
-      "id": "c342",
-      "fullName": "sdfsdf sdfыыыы",
-      "email": "sdfsdf@iisdf.sdf",
-      "phone": "sdfsdfsdfsdf",
-      "birthDate": "0222-02-22",
-      "role": "Користувач",
-      "position": "",
-      "isActive": true
-    },
-    {
       "id": "f5e9",
-      "fullName": "Алексій Левович",
-      "email": "sdflljsdffsd@sdf.sdf",
-      "phone": "23423949230",
+      "fullName": "Alex",
+      "email": "Alex@sdf.sdf",
+      "phone": "42334234234234234",
       "birthDate": "2002-02-22",
       "role": "Користувач",
-      "position": "dfddввв",
+      "position": "Manager",
       "isActive": true
     }
   ]

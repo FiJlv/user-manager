@@ -6,11 +6,16 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { UserDialog } from './UserDialog';
+import { ConfirmDialog } from './ConfirmDialog';
+import { useDeleteUser } from '../hooks/useDeleteUser';
+
 
 export const UserTable = () => {
   const { data: users, isLoading, isError } = useUsers();
   const [open, setOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [userToDelete, setUserToDelete] = useState<User | null>(null);
+  const { mutate: deleteUser } = useDeleteUser(() => setUserToDelete(null));
 
   const handleEdit = (user: User) => {
     setEditingUser(user);
@@ -34,6 +39,14 @@ export const UserTable = () => {
       </Box>
 
       <UserDialog open={open} onClose={handleClose} user={editingUser} />
+
+      <ConfirmDialog
+        open={!!userToDelete}
+        onClose={() => setUserToDelete(null)}
+        onConfirm={() => userToDelete && deleteUser(userToDelete.id)}
+        title="Видалити користувача"
+        message={`Ви впевнені, що хочете видалити ${userToDelete?.fullName}?`}
+      />
 
       <TableContainer component={Paper}>
         <Table>
@@ -62,6 +75,13 @@ export const UserTable = () => {
                 <TableCell>
                   <Button size="small" onClick={() => handleEdit(user)}>
                     Редагувати
+                  </Button>
+                  <Button
+                    size="small"
+                    color="error"
+                    onClick={() => setUserToDelete(user)}
+                  >
+                    Видалити
                   </Button>
                 </TableCell>
               </TableRow>
