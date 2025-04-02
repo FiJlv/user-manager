@@ -2,7 +2,7 @@ import { useUsers } from '../hooks/useUsers';
 import { User } from '../types/user.types';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Paper, CircularProgress, Button, Box, TableSortLabel
+  Paper, CircularProgress, Button, Box, TableSortLabel, TablePagination
 } from '@mui/material';
 import { useState } from 'react';
 import { UserDialog } from './UserDialog';
@@ -19,6 +19,10 @@ export const UserTable = () => {
 
   const [sortBy, setSortBy] = useState<keyof User>('fullName');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
 
   const handleEdit = (user: User) => {
     setEditingUser(user);
@@ -37,6 +41,15 @@ export const UserTable = () => {
       setSortBy(field);
       setSortDirection('asc');
     }
+  };
+
+  const handleChangePage = (_: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+  
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
   const sortedUsers = [...(users ?? [])].sort((a, b) => {
@@ -58,6 +71,10 @@ export const UserTable = () => {
     return 0;
   });
   
+  const paginatedUsers = sortedUsers.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <div>Помилка при завантаженні користувачів</div>;
@@ -151,7 +168,7 @@ export const UserTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sortedUsers?.map((user) => (
+            {paginatedUsers?.map((user) => (
               <TableRow key={user.id}>
                 <TableCell>{user.fullName}</TableCell>
                 <TableCell>{user.email}</TableCell>
@@ -176,7 +193,17 @@ export const UserTable = () => {
             ))}
           </TableBody>
         </Table>
+        <TablePagination
+            component="div"
+            count={sortedUsers.length}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            rowsPerPageOptions={[5, 10, 25]}
+          />
       </TableContainer>
+
     </>
   );
 };
