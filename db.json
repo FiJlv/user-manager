@@ -1,13 +1,243 @@
 {
   "users": [
     {
-      "id": "f5e9",
-      "fullName": "Alex",
-      "email": "Alex@sdf.sdf",
-      "phone": "42334234234234234",
-      "birthDate": "2002-02-22",
+      "id": "a1b2",
+      "fullName": "Maria Ivanova",
+      "email": "maria.ivanova@example.com",
+      "phone": "380501112233",
+      "birthDate": "1995-08-15",
       "role": "Користувач",
-      "position": "Manager",
+      "position": "Designer",
+      "isActive": true
+    },
+    {
+      "id": "c3d4",
+      "fullName": "Oleh Petrenko",
+      "email": "oleh.petrenko@example.com",
+      "phone": "380931234567",
+      "birthDate": "1990-11-05",
+      "role": "Адміністратор",
+      "position": "Team Lead",
+      "isActive": false
+    },
+    {
+      "id": "e5f6",
+      "fullName": "Natalia Shevchenko",
+      "email": "natalia.shevchenko@example.com",
+      "phone": "380671234567",
+      "birthDate": "1998-03-22",
+      "role": "Користувач",
+      "position": "HR",
+      "isActive": true
+    },
+    {
+      "id": "g7h8",
+      "fullName": "Andriy Kovalenko",
+      "email": "andriy.kovalenko@example.com",
+      "phone": "380951112233",
+      "birthDate": "1987-09-10",
+      "role": "Користувач",
+      "position": "Developer",
+      "isActive": false
+    },
+    {
+      "id": "i9j0",
+      "fullName": "Iryna Bondarenko",
+      "email": "iryna.bondarenko@example.com",
+      "phone": "380661122334",
+      "birthDate": "1992-12-01",
+      "role": "Користувач",
+      "position": "QA Engineer",
+      "isActive": true
+    },
+    {
+      "id": "k1l2",
+      "fullName": "Taras Melnyk",
+      "email": "taras.melnyk@example.com",
+      "phone": "380939988776",
+      "birthDate": "1999-04-04",
+      "role": "Користувач",
+      "position": "Intern",
+      "isActive": true
+    },
+    {
+      "id": "m3n4",
+      "fullName": "Dmytro Hnatyuk",
+      "email": "dmytro.hnatyuk@example.com",
+      "phone": "380931231231",
+      "birthDate": "1985-07-21",
+      "role": "Адміністратор",
+      "position": "CTO",
+      "isActive": true
+    },
+    {
+      "id": "o5p6",
+      "fullName": "Yulia Romanenko",
+      "email": "yulia.romanenko@example.com",
+      "phone": "380671112211",
+      "birthDate": "1993-05-17",
+      "role": "Користувач",
+      "position": "Support",
+      "isActive": false
+    },
+    {
+      "id": "q7r8",
+      "fullName": "Vadym Tkachenko",
+      "email": "vadym.tkachenko@example.com",
+      "phone": "380501234567",
+      "birthDate": "1997-10-30",
+      "role": "Користувач",
+      "position": "DevOps",
+      "isActive": true
+    },
+    {
+      "id": "s9t0",
+      "fullName": "Oksana Kravets",
+      "email": "oksana.kravets@example.com",
+      "phone": "380681234567",
+      "birthDate": "2000-06-12",
+      "role": "Користувач",
+      "position": "Recruiter",
+      "isActive": true
+    },
+    {
+      "id": "u1v2",
+      "fullName": "Roman Danyluk",
+      "email": "roman.danyluk@example.com",
+      "phone": "380661234999",
+      "birthDate": "1991-01-05",
+      "role": "Користувач",
+      "position": "Developer",
+      "isActive": true
+    },
+    {
+      "id": "w3x4",
+      "fullName": "Anna Horova",
+      "email": "anna.horova@example.com",
+      "phone": "380931122334",
+      "birthDate": "1996-11-11",
+      "role": "Користувач",
+      "position": "Product Owner",
+      "isActive": false
+    },
+    {
+      "id": "y5z6",
+      "fullName": "Petro Lysenko",
+      "email": "petro.lysenko@example.com",
+      "phone": "380501119988",
+      "birthDate": "1989-08-20",
+      "role": "Користувач",
+      "position": "Backend Developer",
+      "isActive": true
+    },
+    {
+      "id": "a7b8",
+      "fullName": "Lilia Zelenko",
+      "email": "lilia.zelenko@example.com",
+      "phone": "380939393939",
+      "birthDate": "1994-02-14",
+      "role": "Користувач",
+      "position": "Designer",
+      "isActive": false
+    },
+    {
+      "id": "c9d0",
+      "fullName": "Serhiy Nazarenko",
+      "email": "serhiy.nazarenko@example.com",
+      "phone": "380677788899",
+      "birthDate": "1986-03-03",
+      "role": "Адміністратор",
+      "position": "CEO",
+      "isActive": true
+    },
+    {
+      "id": "e1f2",
+      "fullName": "Karina Sobol",
+      "email": "karina.sobol@example.com",
+      "phone": "380935554433",
+      "birthDate": "1990-12-12",
+      "role": "Користувач",
+      "position": "Business Analyst",
+      "isActive": true
+    },
+    {
+      "id": "g3h4",
+      "fullName": "Oleksii Borysov",
+      "email": "oleksii.borysov@example.com",
+      "phone": "380665566778",
+      "birthDate": "1992-09-19",
+      "role": "Користувач",
+      "position": "Scrum Master",
+      "isActive": true
+    },
+    {
+      "id": "i5j6",
+      "fullName": "Diana Poliakova",
+      "email": "diana.poliakova@example.com",
+      "phone": "380931234000",
+      "birthDate": "1993-04-26",
+      "role": "Користувач",
+      "position": "SMM Specialist",
+      "isActive": false
+    },
+    {
+      "id": "k7l8",
+      "fullName": "Vitaliy Zubko",
+      "email": "vitaliy.zubko@example.com",
+      "phone": "380672223344",
+      "birthDate": "1988-07-07",
+      "role": "Користувач",
+      "position": "System Administrator",
+      "isActive": true
+    },
+    {
+      "id": "m9n0",
+      "fullName": "Julia Demchuk",
+      "email": "julia.demchuk@example.com",
+      "phone": "380661110000",
+      "birthDate": "1995-01-30",
+      "role": "Користувач",
+      "position": "Marketing Manager",
+      "isActive": true
+    },
+    {
+      "id": "o1p2",
+      "fullName": "Pavlo Vasylenko",
+      "email": "pavlo.vasylenko@example.com",
+      "phone": "380930001122",
+      "birthDate": "1996-06-06",
+      "role": "Користувач",
+      "position": "Sales Manager",
+      "isActive": true
+    },
+    {
+      "id": "q3r4",
+      "fullName": "Inna Doroshenko",
+      "email": "inna.doroshenko@example.com",
+      "phone": "380501234321",
+      "birthDate": "1987-10-10",
+      "role": "Користувач",
+      "position": "Office Manager",
+      "isActive": false
+    },
+    {
+      "id": "s5t6",
+      "fullName": "Yevhen Vovk",
+      "email": "yevhen.vovk@example.com",
+      "phone": "380939999111",
+      "birthDate": "1991-09-01",
+      "role": "Користувач",
+      "position": "Content Manager",
+      "isActive": true
+    },
+    {
+      "id": "u7v8",
+      "fullName": "Olena Radchenko",
+      "email": "olena.radchenko@example.com",
+      "phone": "380671231231",
+      "birthDate": "1999-11-23",
+      "role": "Користувач",
+      "position": "Copywriter",
       "isActive": true
     }
   ]
