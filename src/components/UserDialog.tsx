@@ -1,5 +1,5 @@
 import {
-    Dialog, DialogTitle, DialogContent, DialogActions, Button
+    Dialog, DialogContent, DialogActions, DialogTitle, Button
   } from '@mui/material';
   import { UserFormValues } from '../schemas/user.schema';
   import { UserForm } from '../forms/UserForm';
@@ -37,7 +37,11 @@ import {
     };
     return (
       <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-        <DialogTitle>Новий користувач</DialogTitle>
+        
+          <DialogTitle>
+            {user ? 'Редагувати користувача' : 'Додати користувача'}
+          </DialogTitle>
+      
         <DialogContent>
         <UserForm
           onSubmit={handleSubmit}

@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  Box, Checkbox, FormControlLabel, Grid, MenuItem, Typography
+  Box, Checkbox, FormControlLabel, Grid, MenuItem
 } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
 import { userSchema, UserFormValues } from '../schemas/user.schema';
@@ -29,21 +29,18 @@ export const UserForm = ({
 
   return (
     <FormProvider {...form}>
-      <Box component="form" id="user-form" onSubmit={form.handleSubmit(onSubmit)} noValidate>
-        <Typography variant="h6" gutterBottom>
-          Додати користувача
-        </Typography>
+      <Box component="form" id="user-form" onSubmit={form.handleSubmit(onSubmit)} noValidate sx={{ pt: 2, pb: 2 }}>
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12 }}>
             <FormField name="fullName" label="ПІБ *" />
           </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12}}>
             <FormField name="email" label="Email *" />
           </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12}}>
             <FormField name="phone" label="Телефон *" />
           </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12}}>
             <FormField
               name="birthDate"
               label="Дата народження"
@@ -51,16 +48,16 @@ export const UserForm = ({
               InputLabelProps={{ shrink: true }}
             />
           </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12}}>
             <FormField name="role" label="Роль *" select>
               <MenuItem value="Адміністратор">Адміністратор</MenuItem>
               <MenuItem value="Користувач">Користувач</MenuItem>
             </FormField>
           </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12 }}>
             <FormField name="position" label="Посада" />
           </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12 }}>
             <FormControlLabel
               control={<Checkbox {...form.register('isActive')} defaultChecked />}
               label="Активний"
