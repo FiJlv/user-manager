@@ -3,7 +3,7 @@ import { UserFormValues } from '../schemas/user.schema';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const getUsers = async (): Promise<User[]> => {

@@ -49,27 +49,27 @@ export const UserForm = ({
           <Grid size={{ xs: 12}}>
           <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ukLocale}>
             <Grid size={{ xs: 12 }}>
-            <Controller
-            name="birthDate"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <DatePicker
-                label="Дата народження"
-                value={field.value ? new Date(field.value) : null}
-                onChange={(date) => {
-                  const formatted = date ? format(date, 'yyyy-MM-dd') : '';
-                  field.onChange(formatted);
-                }}
-                slotProps={{
-                  textField: {
-                    fullWidth: true,
-                    error: !!fieldState.error,
-                    helperText: fieldState.error?.message,
-                  },
-                }}
+              <Controller
+                name="birthDate"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <DatePicker
+                    label="Дата народження"
+                    value={field.value ? new Date(field.value) : null}
+                    onChange={(date) => {
+                      const formatted = date ? format(date, 'yyyy-MM-dd') : '';
+                      field.onChange(formatted);
+                    }}
+                    slotProps={{
+                      textField: {
+                        fullWidth: true,
+                        error: !!fieldState.error,
+                        helperText: fieldState.error?.message,
+                      },
+                    }}
+                  />
+                )}
               />
-            )}
-          />
             </Grid>
           </LocalizationProvider>
           </Grid>

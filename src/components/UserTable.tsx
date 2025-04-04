@@ -2,12 +2,13 @@ import { useUsers } from '../hooks/useUsers';
 import { User } from '../types/user.types';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Paper, CircularProgress, Button, Box, TableSortLabel, TablePagination, Typography, Container, Grid
+  Paper, CircularProgress, Button, Box, TablePagination, Typography, Container, Grid
 } from '@mui/material';
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { UserDialog } from './UserDialog';
 import { ConfirmDialog } from './ConfirmDialog';
 import { useDeleteUser } from '../hooks/useDeleteUser';
+import { UserTableHead } from './UserTableHead';
 
 export const UserTable = () => {
   const { data: users, isLoading, isError } = useUsers();
@@ -24,10 +25,11 @@ export const UserTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleEdit = (user: User) => {
+  const handleEdit = useCallback((user: User) => {
     setEditingUser(user);
     setOpen(true);
-  };
+  }, []);
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -57,28 +59,30 @@ export const UserTable = () => {
     setDeleteName(user.fullName);
   };
 
-  const sortedUsers = [...(users ?? [])].sort((a, b) => {
-    const aValue = a[sortBy];
-    const bValue = b[sortBy];
+  const sortedUsers = useMemo(() => {
+    return [...(users ?? [])].sort((a, b) => {
+      const aValue = a[sortBy];
+      const bValue = b[sortBy];
 
-    if (typeof aValue === 'string' && typeof bValue === 'string') {
-      return sortDirection === 'asc'
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue);
-    }
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return sortDirection === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
 
-    if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
-      return sortDirection === 'asc'
-        ? Number(aValue) - Number(bValue)
-        : Number(bValue) - Number(aValue);
-    }
+      if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
+        return sortDirection === 'asc'
+          ? Number(aValue) - Number(bValue)
+          : Number(bValue) - Number(aValue);
+      }
 
-    return 0;
-  });
-  
-  const paginatedUsers = sortedUsers.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
+      return 0;
+    });
+  }, [users, sortBy, sortDirection]);
+
+  const paginatedUsers = useMemo(
+    () => sortedUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
+    [sortedUsers, page, rowsPerPage]
   );
 
   return (
@@ -126,74 +130,13 @@ export const UserTable = () => {
 
                 <TableContainer>
                     <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                      <TableHead>
-                        <TableRow>
-                         <TableCell sortDirection={sortBy === 'fullName' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'fullName'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('fullName')}
-                              >
-                                ПІБ
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell sortDirection={sortBy === 'email' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'email'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('email')}
-                              >
-                                Email
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell sortDirection={sortBy === 'birthDate' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'birthDate'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('birthDate')}
-                              >
-                                Дата народження
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell sortDirection={sortBy === 'phone' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'phone'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('phone')}
-                              >
-                                Телефон
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell sortDirection={sortBy === 'role' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'role'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('role')}
-                              >
-                                Роль
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell sortDirection={sortBy === 'position' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'position'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('position')}
-                              >
-                                Посада
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell sortDirection={sortBy === 'isActive' ? sortDirection : false}>
-                              <TableSortLabel
-                                active={sortBy === 'isActive'}
-                                direction={sortDirection}
-                                onClick={() => handleSort('isActive')}
-                              >
-                                Активний
-                              </TableSortLabel>
-                            </TableCell>
-                            <TableCell>Дії</TableCell>
-                          </TableRow>
-                        </TableHead>
+                    <TableHead>
+                      <UserTableHead
+                        sortBy={sortBy}
+                        sortDirection={sortDirection}
+                        onSort={handleSort}
+                      />
+                    </TableHead>
                         <TableBody>
                         {paginatedUsers?.map((user) => (
                           <TableRow key={user.id}>

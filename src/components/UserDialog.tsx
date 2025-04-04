@@ -34,7 +34,7 @@ import {
       const formattedData = {
         ...data,
         role: data.role as UserRole,
-      };
+      };    
     
       if (user) {
         await update({ id: user.id, ...formattedData });
