@@ -86,10 +86,15 @@ export const UserForm = ({
             <FormField name="position" label="Посада" />
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <FormControlLabel
-              control={<Checkbox {...form.register('isActive')} defaultChecked />}
-              label="Активний"
-            />
+          <Controller name="isActive" control={form.control} render={({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox checked={field.value} onChange={field.onChange}/>
+                }
+                label="Активний"
+              />
+            )}
+          />
           </Grid>
         </Grid>
       </Box>

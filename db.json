@@ -38,7 +38,7 @@
       "birthDate": "1987-09-10",
       "role": "Користувач",
       "position": "Developer",
-      "isActive": false
+      "isActive": true
     },
     {
       "id": "i9j0",
