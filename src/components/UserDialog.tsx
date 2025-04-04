@@ -7,6 +7,7 @@ import {
   import { useUpdateUser} from '../hooks/useUpdateUser';
   import { User } from '../types/user.types';
   import { mapUserToFormValues } from '../utils/mapUser';
+  import { UserRole } from '../types/user.types';
   
   interface Props {
     open: boolean;
@@ -29,12 +30,20 @@ import {
     const isPending = isCreating || isUpdating;
 
     const handleSubmit = async (data: UserFormValues) => {
+
+      const formattedData = {
+        ...data,
+        role: data.role as UserRole,
+      };
+    
       if (user) {
-        await update({ id: user.id, ...data });
+        await update({ id: user.id, ...formattedData });
       } else {
-        await create(data);
+        await create(formattedData);
       }
     };
+
+    
     return (
       <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
         

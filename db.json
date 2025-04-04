@@ -229,16 +229,6 @@
       "role": "Користувач",
       "position": "Content Manager",
       "isActive": true
-    },
-    {
-      "id": "u7v8",
-      "fullName": "Olena Radchenko",
-      "email": "olena.radchenko@example.com",
-      "phone": "380671231231",
-      "birthDate": "1999-11-23",
-      "role": "Користувач",
-      "position": "Copywriter",
-      "isActive": true
     }
   ]
 }

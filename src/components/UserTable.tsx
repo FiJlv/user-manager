@@ -81,9 +81,6 @@ export const UserTable = () => {
     page * rowsPerPage + rowsPerPage
   );
 
-  if (isLoading) return <CircularProgress />;
-  if (isError) return <div>Помилка при завантаженні користувачів</div>;
-
   return (
     <>
     
@@ -101,132 +98,142 @@ export const UserTable = () => {
 
       <Container maxWidth={false}>
         <Box sx={{  width: "100%", display: "table", tableLayout: "fixed" }}>
-          <Paper sx={{ width: '100%', mb: 2, mt: 2 }}>
-
-          <Grid container spacing={2} alignItems="center" sx={{ p: 2 }}>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <Typography variant="h6" fontWeight={600}>
-                Користувачі
+          <Paper sx={{ width: '100%', minHeight: 300, mb: 2, mt: 2 }}>
+            {isLoading ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', pt: 15 }}>
+                <CircularProgress />
+              </Box>
+            ) : isError ? (
+              <Typography color="error" align="center" pt={15}>
+                Помилка при завантаженні користувачів
               </Typography>
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6 }} textAlign={{ xs: 'left', sm: 'right' }}>
-              <Button variant="contained" color="primary" onClick={() => setOpen(true)} fullWidth={true}
-                sx={{ width: { xs: '100%', sm: 'auto' },}}>
-                Додати користувача
-                
-              </Button>
-            </Grid>
-          </Grid>
+            ) : (
+              <>
+                <Grid container spacing={2} alignItems="center" sx={{ p: 2 }}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
+                    <Typography variant="h6" fontWeight={600}>
+                      Користувачі
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6 }} textAlign={{ xs: 'left', sm: 'right' }}>
+                    <Button variant="contained" color="primary" onClick={() => setOpen(true)} fullWidth={true}
+                      sx={{ width: { xs: '100%', sm: 'auto' },}}>
+                      Додати користувача
+                      
+                    </Button>
+                  </Grid>
+                </Grid>
 
-            <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                  <TableHead>
-                    <TableRow>
-                    <TableCell sortDirection={sortBy === 'fullName' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'fullName'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('fullName')}
-                        >
-                          ПІБ
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell sortDirection={sortBy === 'email' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'email'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('email')}
-                        >
-                          Email
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell sortDirection={sortBy === 'birthDate' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'birthDate'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('birthDate')}
-                        >
-                          Дата народження
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell sortDirection={sortBy === 'phone' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'phone'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('phone')}
-                        >
-                          Телефон
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell sortDirection={sortBy === 'role' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'role'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('role')}
-                        >
-                          Роль
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell sortDirection={sortBy === 'position' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'position'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('position')}
-                        >
-                          Посада
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell sortDirection={sortBy === 'isActive' ? sortDirection : false}>
-                        <TableSortLabel
-                          active={sortBy === 'isActive'}
-                          direction={sortDirection}
-                          onClick={() => handleSort('isActive')}
-                        >
-                          Активний
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell>Дії</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {paginatedUsers?.map((user) => (
-                      <TableRow key={user.id}>
-                        <TableCell>{user.fullName}</TableCell>
-                        <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.birthDate}</TableCell>
-                        <TableCell>{user.phone}</TableCell>
-                        <TableCell>{user.role}</TableCell>
-                        <TableCell>{user.position}</TableCell>
-                        <TableCell>{user.isActive ? 'Так' : 'Ні'}</TableCell>
-                        <TableCell>
-                          <Button 
-                            size="small" 
-                            onClick={() => handleEdit(user)}>
-                            Редагувати
-                          </Button>
-                          <Button
-                            size="small"
-                            color="error"
-                            onClick={() => handleDeleteClick(user)}>
-                            Видалити
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-            </TableContainer>
+                <TableContainer>
+                    <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                      <TableHead>
+                        <TableRow>
+                         <TableCell sortDirection={sortBy === 'fullName' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'fullName'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('fullName')}
+                              >
+                                ПІБ
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell sortDirection={sortBy === 'email' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'email'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('email')}
+                              >
+                                Email
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell sortDirection={sortBy === 'birthDate' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'birthDate'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('birthDate')}
+                              >
+                                Дата народження
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell sortDirection={sortBy === 'phone' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'phone'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('phone')}
+                              >
+                                Телефон
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell sortDirection={sortBy === 'role' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'role'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('role')}
+                              >
+                                Роль
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell sortDirection={sortBy === 'position' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'position'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('position')}
+                              >
+                                Посада
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell sortDirection={sortBy === 'isActive' ? sortDirection : false}>
+                              <TableSortLabel
+                                active={sortBy === 'isActive'}
+                                direction={sortDirection}
+                                onClick={() => handleSort('isActive')}
+                              >
+                                Активний
+                              </TableSortLabel>
+                            </TableCell>
+                            <TableCell>Дії</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        {paginatedUsers?.map((user) => (
+                          <TableRow key={user.id}>
+                            <TableCell>{user.fullName}</TableCell>
+                            <TableCell>{user.email}</TableCell>
+                            <TableCell>{user.birthDate}</TableCell>
+                            <TableCell>{user.phone}</TableCell>
+                            <TableCell>{user.role}</TableCell>
+                            <TableCell>{user.position}</TableCell>
+                            <TableCell>{user.isActive ? 'Так' : 'Ні'}</TableCell>
+                            <TableCell>
+                              <Button 
+                                size="small" 
+                                onClick={() => handleEdit(user)}>
+                                Редагувати
+                              </Button>
+                              <Button
+                                size="small"
+                                color="error"
+                                onClick={() => handleDeleteClick(user)}>
+                                Видалити
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                </TableContainer>
 
-            <TablePagination
-              component="div"
-              count={sortedUsers.length}
-              page={page}
-              onPageChange={handleChangePage}
-              rowsPerPage={rowsPerPage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              rowsPerPageOptions={[5, 10, 25]}
-            />
-
+                <TablePagination
+                  component="div"
+                  count={sortedUsers.length}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  rowsPerPage={rowsPerPage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  rowsPerPageOptions={[5, 10, 25]}
+                />
+              </>
+            )}
           </Paper>
         </Box>
       </Container>
